@@ -1,4 +1,5 @@
 from django.db import models
+# teste de envio de arquivos  para o github
 # informações básicas que serão armazenadas sobre os clientes.
 class Cliente(models.Model):
     nome = models.CharField(max_length=100)  

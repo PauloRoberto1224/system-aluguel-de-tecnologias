@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework', ##
     'aluguel', ##
+    'corsheaders', ## cross
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', ##cross
 ]
 
 ROOT_URLCONF = 'sistema_aluguel.urls'
@@ -123,3 +125,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+## PERMISSÃO DE ACESSO A QUALQUER PORTA DO FRONT USANDO LOCALHOST:
+CORS_ALLOW_ALL_ORIGINS = True
+
+## PERMISSÃO DE ACESSO LIMITANDO A PORTA DO FRONT USANDO LOCALHOST:
+#CORS_ALLOWED_ORIGINS = [
+#    "http://localhost:3000",  # domínio do front-end
+#    "https://meu-frontend.com",
+#]

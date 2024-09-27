@@ -1,0 +1,35 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: 450px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+}
+.modal h2 {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4e4e4eb0;
+}

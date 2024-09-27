@@ -1,0 +1,39 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .field {
+    margin-bottom: 16px;
+  }
+  
+  label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: #444444;
+  }
+  
+  input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    background-color: #54b1ee;
+    margin: 0 auto;   
+    color: #fff; 
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+  }
+  .error {
+    color: red;
+    font-size: 0.875em;
+  }
+  

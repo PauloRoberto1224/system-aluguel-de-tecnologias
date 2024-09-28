@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework', ##
     'aluguel', ##
     'corsheaders', ## cross
+    'django_filters', ## filtro por nome do cliente
 ]
 
 MIDDLEWARE = [
@@ -134,4 +135,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 #CORS_ALLOWED_ORIGINS = [
 #    "http://localhost:3000",  # domínio do front-end
 #    "https://meu-frontend.com",
-#]
+#
+
+#  Habilita a Filtragem Global ###
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+}

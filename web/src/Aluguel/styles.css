@@ -1,0 +1,132 @@
+
+
+.logo {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 10px 40px;
+    border-radius: 4px;
+}
+
+.logo h2 {
+    color: #929292;
+}
+.logo .links-nav {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10;
+}
+.logo .links-nav a {
+    text-decoration: none;
+    color: #7c7c7c;
+    font-size: .9rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
+
+.logo .links-nav a:hover {
+    color: #309dc9;
+    text-decoration: underline;
+    transition: all ease .2s;
+}
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f2f2f2;
+}
+.tag-clientes {
+    margin-bottom: 50px;
+}
+
+.tag-clientes h2 {
+    font-size: 28px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: #153049;
+}
+
+.content-primary {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e9e1e1;
+    padding: 10px;
+    border-radius: 4px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.content-primary p {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 10px;
+    color: #031322;
+}
+.box-buttons {
+    display: flex;
+    align-content: center;
+    gap: 10px;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+    height: 70%;
+    padding: 50px 40px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+button {
+    width: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center !important;
+    background-color: #505050;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 10px 10px;
+    color: #fff;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.1);
+    transition: all ease-in-out .2s;
+}
+
+.editar {
+    background-color: #34a4d8;
+}
+
+.excluir {
+    background-color: #d83434;
+}
+
+.register {
+    width: 150px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
+    background-color: #309dc9;
+    align-self: flex-end;
+}
+
+.content-primary .info-content {
+    padding: 10px 10px;
+    display: flex;
+    gap: 10px;
+}
+.content-primary .info-content p {
+    font-size: .9rem;
+    font-family: 'Poppins', sans-serif;
+    color: #031322;
+}

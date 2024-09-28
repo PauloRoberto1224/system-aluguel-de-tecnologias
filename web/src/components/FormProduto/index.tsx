@@ -25,8 +25,9 @@ export const FormProduto: React.FC = () => {
   const onSubmit = async (data: FormData) => {
     const response = await api.post('/produtos/', data)
     if (response.status == 201) {
-      window.alert("Cliente criado com sucesso!")
-      navigation('/')
+      window.alert("Produto criado com sucesso!")
+      window.location.reload();
+      navigation('/produto')
     }
   };
 
@@ -58,9 +59,16 @@ export const FormProduto: React.FC = () => {
 
       <div className={styles.field}>
         <label htmlFor="disponibilidade">Disponibilidade:</label>
-        <input type="checkbox" id="disponibilidade" {...register('disponibilidade')} />
+        <div className={styles.checkboxContainer}>
+          <input 
+            type="checkbox" 
+            id="disponibilidade" 
+            {...register('disponibilidade')} 
+          />
+          <span className={styles.checkboxLabel}> Disponível</span>
+        </div>
       </div>
-
+      
       <button type="submit">Enviar</button>
     </form>
   );

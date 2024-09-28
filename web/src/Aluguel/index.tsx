@@ -7,10 +7,14 @@ import { api } from "../api/app";
 import { Rental } from "../interfaces/Aluguel";
 import { FormAluguelEdit } from "../components/Editar/Form-Aluguel";
 
+import { Header } from "../components/Header";
+
 export const Aluguel = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openModalEdit, setOpenModalEdit] = useState<boolean>(false);
     const [aluguel, setAluguel] = useState<Rental[]>([]);
+    const [aluguelSelecionado, setAluguelSelecionado] = useState<Rental | null>(null);
+
 
     useEffect(() => {
         const getDadosAluguel = async () => {
@@ -22,27 +26,23 @@ export const Aluguel = () => {
 
     const deleteAluguel = async (id:number) => {
         await api.delete(`/alugueis/${id}/`)
+        setAluguel((prev) => prev.filter(aluguel => aluguel.id !== id));
         window.location.reload();
 
     }
+    const handleEditClick = (aluguel: Rental) => {
+        setAluguelSelecionado(aluguel);
+        setOpenModalEdit(true);
+    };
 
     return (
         <>
             <div className="container">
-                <div className="logo">
-                    <div>
-                        <h2>System Alugueis</h2>
-                    </div>
-                    <div className="links-nav">
-                        <a href="/aluguel">Alugueis</a>
-                        <a href="/produtos">Produtos</a>
-                        <a href="/">Clientes</a>
-                    </div>
-                </div>
+               <Header />
                 <main>
                     <div>
                         <div className="tag-clientes">
-                            <h2>| Alugueis</h2>
+                            <p>| Alugueis</p>
                         </div>
                         {
                             aluguel.map((a) => {
@@ -57,7 +57,7 @@ export const Aluguel = () => {
                                             </div>
                                         </div>
                                         <div className="box-buttons">
-                                            <button className="editar" onClick={() => setOpenModalEdit(true)}>
+                                            <button className="editar"  onClick={() => handleEditClick(a)}>
                                                 <NotePencil size={22} />
                                                 Editar
                                             </button>
@@ -83,7 +83,7 @@ export const Aluguel = () => {
                         isOpen={openModalEdit}
                         title="Editar aluguel"
                         onClose={() => setOpenModalEdit(false)}
-                        children=<FormAluguelEdit/>
+                        children={aluguelSelecionado ? <FormAluguelEdit aluguel={aluguelSelecionado} /> : null }
                     />
                 </main>
             </div>

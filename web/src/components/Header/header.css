@@ -1,0 +1,40 @@
+.logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center!important;
+    width: 60%;
+    height: 50px;
+    background-color: #fafafa;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+}
+
+.logo .logo-icon a {
+    padding: 5px;
+    color: #010020;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logo .links-nav a {
+    text-decoration: none;
+    color: #010016;
+    font-size: .9rem;
+    font-weight: 500;
+    margin-right: 10px;
+    padding: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+.logo .links-nav a:last-child {
+    color: #d33636;
+    background-color: antiquewhite;
+    border-radius: 10px;
+}
+
+.logo .links-nav a:hover {
+    color: #309dc9;
+    text-decoration: underline;
+    transition: all ease .2s;
+}

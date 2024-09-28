@@ -16,9 +16,14 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export const FormProdutoEdit: React.FC = () => {
+interface FormEditProps {
+  initialProduct: FormData; 
+}
+
+export const FormProdutoEdit: React.FC<FormEditProps> = ({ initialProduct }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: initialProduct,
   });
   const navigation = useNavigate();
 
@@ -26,7 +31,7 @@ export const FormProdutoEdit: React.FC = () => {
     const response = await api.put('/produtos/', data)
     if (response.status == 201) {
       window.alert("Cliente criado com sucesso!")
-      navigation('/')
+      navigation('/produto')
     }
   };
 
@@ -58,7 +63,14 @@ export const FormProdutoEdit: React.FC = () => {
 
       <div className={styles.field}>
         <label htmlFor="disponibilidade">Disponibilidade:</label>
-        <input type="checkbox" id="disponibilidade" {...register('disponibilidade')} />
+        <div className={styles.checkboxContainer}>
+          <input 
+            type="checkbox" 
+            id="disponibilidade" 
+            {...register('disponibilidade')} 
+          />
+          <span className={styles.checkboxLabel}> Disponível</span>
+        </div>
       </div>
 
       <button type="submit">Enviar</button>

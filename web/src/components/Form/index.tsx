@@ -9,13 +9,12 @@ import { useNavigate } from 'react-router-dom';
 const schema = z.object({
   nome: z.string().min(1, 'Nome é obrigatório'),
   cpf: z.string()
-    .min(1, 'CPF é obrigatório')
-    .regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, 'CPF deve estar no formato XXX.XXX.XXX-XX'),
+    .min(1, 'CPF é obrigatório'),
   contato: z.string().min(1, 'Contato é obrigatório'),
   email: z.string().email('Email inválido'),
   cep: z.string().min(1, 'CEP é obrigatório'),
   cidade: z.string().min(1, 'Cidade é obrigatória'),
-  estado: z.string().min(1, 'Estado é obrigatório'),
+  estado: z.string().min(2, 'Estado é obrigatório').max(2, 'Estado é obrigatório 2 Caracter'),
   rua: z.string().min(1, 'Rua é obrigatória'),
   numero: z.string().min(1, 'Número é obrigatório'),
 });
@@ -33,7 +32,8 @@ export const Form: React.FC = () => {
     const response = await api.post('/clientes/', data)
     if (response.status == 201) {
       window.alert("Cliente criado com sucesso!")
-      navigation('/')
+      window.location.reload();
+      navigation('/home')
     }
   };
 

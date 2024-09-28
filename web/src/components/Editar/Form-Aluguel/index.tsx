@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,17 +18,43 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export const FormAluguelEdit: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+interface FormAluguelEditProps {
+  aluguel: FormData;
+}
+
+export const FormAluguelEdit: React.FC<FormAluguelEditProps> = ({ aluguel }) => {
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
-  const navigation = useNavigate();
 
+  const navigation = useNavigate();
+    
+  const [clientes, setClientes] = useState<any[]>([]);
+  const [produtos, setProdutos] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchClientes = async () => {
+      const response = await api.get('/clientes/');
+      setClientes(response.data);
+    };
+
+    const fetchProdutos = async () => {
+      const response = await api.get('/produtos/');
+      setProdutos(response.data);
+    };
+
+    fetchClientes();
+    fetchProdutos();
+  }, []);
+  useEffect(() => {
+    reset(aluguel);
+  }, [aluguel, reset]);
+  
   const onSubmit = async (data: FormData) => {
     const response = await api.put('/alugueis/', data)
     if (response.status == 201) {
       window.alert("Cliente criado com sucesso!")
-      navigation('/')
+      navigation('/aluguel')
     }
   };
 
@@ -52,15 +78,29 @@ export const FormAluguelEdit: React.FC = () => {
         {errors.valor_total && <span className={styles.error}>{errors.valor_total.message}</span>}
       </div>
 
-      <div className={styles.field}>
-        <label htmlFor="cliente">ID do Cliente:</label>
-        <input type="number" id="cliente" {...register('cliente')} />
+       <div className={styles.field}>
+        <label htmlFor="cliente">Cliente:</label>
+        <select id="cliente" {...register('cliente')}>
+          <option value="">Selecione um cliente</option>
+          {clientes.map(cliente => (
+            <option key={cliente.id} value={cliente.id}>
+              {cliente.nome}
+            </option>
+          ))}
+        </select>
         {errors.cliente && <span className={styles.error}>{errors.cliente.message}</span>}
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="produto">ID do Produto:</label>
-        <input type="number" id="produto" {...register('produto')} />
+        <label htmlFor="produto">Produto:</label>
+        <select id="produto" {...register('produto')}>
+          <option value="">Selecione um produto</option>
+          {produtos.map(produto => (
+            <option key={produto.id} value={produto.id}>
+              {produto.nome}
+            </option>
+          ))}
+        </select>
         {errors.produto && <span className={styles.error}>{errors.produto.message}</span>}
       </div>
 

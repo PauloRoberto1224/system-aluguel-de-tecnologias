@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -6,13 +6,12 @@ import styles from './styles.module.css';
 import { api } from '../../api/app';
 import { useNavigate } from 'react-router-dom';
 
-
 const schema = z.object({
   data_inicio: z.string().min(1, 'Data de início é obrigatória').regex(/^\d{4}-\d{2}-\d{2}$/, 'Formato inválido, use YYYY-MM-DD'),
   data_fim: z.string().min(1, 'Data de fim é obrigatória').regex(/^\d{4}-\d{2}-\d{2}$/, 'Formato inválido, use YYYY-MM-DD'),
   valor_total: z.string().min(1, 'Valor total é obrigatório').regex(/^\d+(\.\d{1,2})?$/, 'Valor deve ser um número válido'),
-  cliente: z.number().min(1, 'ID do cliente é obrigatório'),
-  produto: z.number().min(1, 'ID do produto é obrigatório'),
+  cliente: z.number().min(1, 'Cliente é obrigatório'),
+  produto: z.number().min(1, 'Produto é obrigatório'),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -21,13 +20,37 @@ export const FormAluguel: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
+
   const navigation = useNavigate();
+  
+  const [clientes, setClientes] = useState<any[]>([]);
+  const [produtos, setProdutos] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchClientes = async () => {
+      const response = await api.get('/clientes/');
+      setClientes(response.data);
+    };
+
+    const fetchProdutos = async () => {
+      const response = await api.get('/produtos/');
+      setProdutos(response.data);
+    };
+
+    fetchClientes();
+    fetchProdutos();
+  }, []);
 
   const onSubmit = async (data: FormData) => {
-    const response = await api.post('/alugueis/', data)
-    if (response.status == 201) {
-      window.alert("Cliente criado com sucesso!")
-      navigation('/')
+    try {
+      const response = await api.post('/alugueis/', data);
+      if (response.status === 201) {
+        window.alert("Aluguel criado com sucesso!");
+        navigation('/aluguel');
+      }
+    } catch (error) {
+      console.error('Erro ao criar aluguel:', error);
+      window.alert('Erro ao criar aluguel.');
     }
   };
 
@@ -52,14 +75,28 @@ export const FormAluguel: React.FC = () => {
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="cliente">ID do Cliente:</label>
-        <input type="number" id="cliente" {...register('cliente')} />
+        <label htmlFor="cliente">Cliente:</label>
+        <select id="cliente" {...register('cliente')}>
+          <option value="">Selecione um cliente</option>
+          {clientes.map(cliente => (
+            <option key={cliente.id} value={cliente.id}>
+              {cliente.nome}
+            </option>
+          ))}
+        </select>
         {errors.cliente && <span className={styles.error}>{errors.cliente.message}</span>}
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="produto">ID do Produto:</label>
-        <input type="number" id="produto" {...register('produto')} />
+        <label htmlFor="produto">Produto:</label>
+        <select id="produto" {...register('produto')}>
+          <option value="">Selecione um produto</option>
+          {produtos.map(produto => (
+            <option key={produto.id} value={produto.id}>
+              {produto.nome}
+            </option>
+          ))}
+        </select>
         {errors.produto && <span className={styles.error}>{errors.produto.message}</span>}
       </div>
 

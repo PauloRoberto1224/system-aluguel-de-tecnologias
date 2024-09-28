@@ -36,4 +36,22 @@
     color: red;
     font-size: 0.875em;
   }
+  .checkboxContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px; 
+  }
+  
+  .checkboxLabel {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: #444444;
+    cursor: pointer; 
+    font-size: .9rem;
+  }
+  
   

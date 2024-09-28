@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 import { api } from "../api/app";
 import { Product } from "../interfaces/Produto";
 import { FormProdutoEdit } from "../components/Editar/FormProduto";
+import { Header } from "../components/Header";
 
 export const Produtos = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [produto, setProduto] = useState<Product[]>([]);
     const [openModalEdit, setOpenModalEdit] = useState<boolean>(false);
+    const [productEdit, setProductEdit] = useState<Product | null>(null); 
 
     useEffect(() => {
         const getDadosProdutos = async () => {
@@ -22,26 +24,23 @@ export const Produtos = () => {
 
     const deleteProduto = async (id:number) => {
         await api.delete(`/produtos/${id}/`)
+        setProduto((prev) => prev.filter(produto => produto.id !== id));
         window.location.reload();
     }
+
+    const handleEditClick = (produto: Product) => {
+        setProductEdit(produto); 
+        setOpenModalEdit(true);
+    };
 
     return (
         <>
         <div className="container">
-            <div className="logo">
-                <div>
-                    <h2>System Alugueis</h2>
-                </div>
-                <div className="links-nav">
-                    <a href="/aluguel">Alugueis</a>
-                    <a href="/produtos">Produtos</a>
-                    <a href="/">Clientes</a>
-                </div>
-            </div>
+           <Header />
             <main>
                 <div>
                     <div className="tag-clientes">
-                        <h2>| Produtos</h2>
+                        <p>| Produtos</p>
                     </div>
                     {
                         produto.map((p) => {
@@ -61,7 +60,7 @@ export const Produtos = () => {
                                    
                                 </div>
                                 <div className="box-buttons">
-                                    <button className="editar" onClick={() => setOpenModalEdit(true)}>
+                                    <button className="editar"  onClick={() => handleEditClick(p)}>
                                         <NotePencil size={22} />
                                         Editar
                                     </button>
@@ -88,7 +87,7 @@ export const Produtos = () => {
                         isOpen={openModalEdit}
                         title="Editar produto"
                         onClose={() => setOpenModalEdit(false)}
-                        children=<FormProdutoEdit/>
+                        children={productEdit ? <FormProdutoEdit initialProduct={productEdit} /> : null} 
                     />
             </main>
         </div>

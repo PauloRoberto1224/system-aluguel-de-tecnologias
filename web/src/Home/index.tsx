@@ -77,7 +77,7 @@ export const Home = () => {
                         isOpen={openModalEdit}
                         title="Editar cliente"
                         onClose={() => setOpenModalEdit(false)}
-                        children={clienteEdit ? <FormEdit initialData={clienteEdit} /> : null} 
+                        children={clienteEdit ? <FormEdit initialData={clienteEdit} id={clienteEdit.id}/> : null} 
                     />
                 </main>
             </div>

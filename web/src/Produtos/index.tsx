@@ -83,7 +83,7 @@ export const Produtos = () => {
                         isOpen={openModalEdit}
                         title="Editar produto"
                         onClose={() => setOpenModalEdit(false)}
-                        children={productEdit ? <FormProdutoEdit initialProduct={productEdit} /> : null} 
+                        children={productEdit ? <FormProdutoEdit initialProduct={productEdit} id={productEdit.id}/> : null} 
                     />
             </main>
         </div>

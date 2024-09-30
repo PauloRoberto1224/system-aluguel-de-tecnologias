@@ -17,10 +17,11 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 interface FormEditProps {
+  id: number,
   initialProduct: FormData; 
 }
 
-export const FormProdutoEdit: React.FC<FormEditProps> = ({ initialProduct }) => {
+export const FormProdutoEdit: React.FC<FormEditProps> = ({ initialProduct, id}) => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: initialProduct,
@@ -28,9 +29,9 @@ export const FormProdutoEdit: React.FC<FormEditProps> = ({ initialProduct }) => 
   const navigation = useNavigate();
 
   const onSubmit = async (data: FormData) => {
-    const response = await api.put('/produtos/', data)
-    if (response.status == 201) {
-      window.alert("Cliente criado com sucesso!")
+    const response = await api.put(`/produtos/${id}/`, data)
+    if (response.status == 200) {
+      window.alert("Cliente atualizado com sucesso!")
       window.location.reload();
       navigation('/produto')
     } else { 

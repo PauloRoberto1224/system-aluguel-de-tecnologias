@@ -54,7 +54,7 @@ export const FormAluguel: React.FC = () => {
       }
     } catch (error) {
       console.error('Erro ao criar aluguel:', error);
-      window.alert('Erro ao criar aluguel.');
+      window.alert('Produto indisponível para aluguel');
     }
   };
 

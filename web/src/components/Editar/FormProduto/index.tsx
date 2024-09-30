@@ -33,6 +33,8 @@ export const FormProdutoEdit: React.FC<FormEditProps> = ({ initialProduct }) => 
       window.alert("Cliente criado com sucesso!")
       window.location.reload();
       navigation('/produto')
+    } else { 
+      window.alert("Error na atualização")
     }
   };
 

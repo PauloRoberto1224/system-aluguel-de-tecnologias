@@ -38,43 +38,39 @@ export const Produtos = () => {
         <div className="container">
            <Header />
             <main>
-                <div>
-                    <div className="tag-clientes">
-                        <p>| Produtos</p>
-                    </div>
-                    {
-                        produto.map((p) => {
-                            return (
-                                <div className="content-primary" key={p.id}>
-                                <div>
-                                    <div className="info-content-aluguel">
-                                        <div className="box-text">
-                                            <p>Nome:</p>
-                                            <p>{p.nome}</p>
-                                        </div>
-                                        <p>Descrição: {p.descricao}</p>
-                                    </div>
-                                    {
-                                        p.disponibilidade ?  <p className="online">Disponível</p> : <p className="off">Indisponível</p>
-                                    } 
-                                   
-                                </div>
-                                <div className="box-buttons">
-                                    <button className="editar"  onClick={() => handleEditClick(p)}>
-                                        <NotePencil size={22} />
-                                        Editar
-                                    </button>
-                                    <button className="excluir" onClick={() => deleteProduto(p.id)}>
-                                        <Trash size={22} />
-                                        Excluir
-                                    </button>
-                                </div>
-                            </div>
-        
-                            )
-                        })
-                    }
+            <div className="scrollable-content">
+          <div className="tag-clientes">
+            <p>| Produtos</p>
+          </div>
+          {produto.map((p) => (
+            <div className="content-primary" key={p.id}>
+              <div>
+                <div className="info-content-aluguel">
+                  <div className="box-text">
+                    <p>Nome:</p>
+                    <p>{p.nome}</p>
+                  </div>
+                  <p>Descrição: {p.descricao}</p>
                 </div>
+                {p.disponibilidade ? (
+                  <p className="online">Disponível</p>
+                ) : (
+                  <p className="off">Indisponível</p>
+                )}
+              </div>
+              <div className="box-buttons">
+                <button className="editar" onClick={() => handleEditClick(p)}>
+                  <NotePencil size={22} />
+                  Editar
+                </button>
+                <button className="excluir" onClick={() => deleteProduto(p.id)}>
+                  <Trash size={22} />
+                  Excluir
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
 
                 <button className="register" onClick={() => setOpenModal(true)}>Cadastrar produto</button>
                 <Modal 

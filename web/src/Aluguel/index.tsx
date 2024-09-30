@@ -40,7 +40,7 @@ export const Aluguel = () => {
             <div className="container">
                <Header />
                 <main>
-                    <div>
+                    <div className="scrollable-content">
                         <div className="tag-clientes">
                             <p>| Alugueis</p>
                         </div>

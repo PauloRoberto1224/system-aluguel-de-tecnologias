@@ -37,7 +37,7 @@ export const Home = () => {
             <div className="container">
             <Header />
                 <main>
-                    <div>
+                    <div className="scrollable-content">
                         <div className="tag-clientes">
                             <p>| Clientes</p>
                         </div>

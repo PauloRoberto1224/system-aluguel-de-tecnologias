@@ -6,14 +6,16 @@ import styles from './styles.module.css';
 
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../../api/app';
+import type { Cliente } from '../../../interfaces/Client';
+import type { Product } from '../../../interfaces/Produto';
 
 
 const schema = z.object({
   data_inicio: z.string().min(1, 'Data de início é obrigatória').regex(/^\d{4}-\d{2}-\d{2}$/, 'Formato inválido, use YYYY-MM-DD'),
   data_fim: z.string().min(1, 'Data de fim é obrigatória').regex(/^\d{4}-\d{2}-\d{2}$/, 'Formato inválido, use YYYY-MM-DD'),
   valor_total: z.string().min(1, 'Valor total é obrigatório').regex(/^\d+(\.\d{1,2})?$/, 'Valor deve ser um número válido'),
-  cliente: z.number().min(1, 'ID do cliente é obrigatório'),
-  produto: z.number().min(1, 'ID do produto é obrigatório'),
+  cliente: z.string().min(1, 'ID do cliente é obrigatório'),
+  produto: z.string().min(1, 'ID do produto é obrigatório'),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -29,8 +31,8 @@ export const FormAluguelEdit: React.FC<FormAluguelEditProps> = ({ aluguel }) => 
 
   const navigation = useNavigate();
     
-  const [clientes, setClientes] = useState<any[]>([]);
-  const [produtos, setProdutos] = useState<any[]>([]);
+  const [clientes, setClientes] = useState<Cliente[]>([]);
+  const [produtos, setProdutos] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchClientes = async () => {
@@ -46,6 +48,7 @@ export const FormAluguelEdit: React.FC<FormAluguelEditProps> = ({ aluguel }) => 
     fetchClientes();
     fetchProdutos();
   }, []);
+
   useEffect(() => {
     reset(aluguel);
   }, [aluguel, reset]);
@@ -54,6 +57,7 @@ export const FormAluguelEdit: React.FC<FormAluguelEditProps> = ({ aluguel }) => 
     const response = await api.put('/alugueis/', data)
     if (response.status == 201) {
       window.alert("Cliente criado com sucesso!")
+      window.location.reload();
       navigation('/aluguel')
     }
   };

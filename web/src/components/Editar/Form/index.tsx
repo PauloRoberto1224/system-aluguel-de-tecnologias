@@ -36,6 +36,7 @@ export const FormEdit: React.FC<FormEditProps> = ({ initialData }) => {
     const response = await api.put('/clientes/', data)
     if (response.status == 201) {
       window.alert("Cliente criado com sucesso!")
+      window.location.reload();
       navigation('/home')
     }
   };

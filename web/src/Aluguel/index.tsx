@@ -50,6 +50,7 @@ export const Aluguel = () => {
                                     <div className="content-primary" key={a.id}>
                                         <div>
                                             <p>{a.produto}</p>
+                                            <p>{a.cliente}</p>
                                             <div className="info-content">
                                                 <p>Data início: {a.data_inicio}</p>
                                                 <p>Data fim: {a.data_fim}</p>

@@ -31,6 +31,7 @@ export const FormProdutoEdit: React.FC<FormEditProps> = ({ initialProduct }) => 
     const response = await api.put('/produtos/', data)
     if (response.status == 201) {
       window.alert("Cliente criado com sucesso!")
+      window.location.reload();
       navigation('/produto')
     }
   };

@@ -35,7 +35,7 @@ export const FormEdit: React.FC<FormEditProps> = ({ initialData, id }) => {
 
   const onSubmit = async (data: FormData) => {
     const response = await api.put(`/clientes/${id}/`, data)
-    if (response.status == 201) {
+    if (response.status == 200) {
       window.alert("Cliente atualizado com sucesso!")
       window.location.reload();
       navigation('/home')

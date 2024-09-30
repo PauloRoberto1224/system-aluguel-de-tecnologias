@@ -31,7 +31,7 @@ export const FormProdutoEdit: React.FC<FormEditProps> = ({ initialProduct, id}) 
   const onSubmit = async (data: FormData) => {
     const response = await api.put(`/produtos/${id}/`, data)
     if (response.status == 200) {
-      window.alert("Cliente atualizado com sucesso!")
+      window.alert("Produto atualizado com sucesso!")
       window.location.reload();
       navigation('/produto')
     } else { 

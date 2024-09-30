@@ -12,10 +12,12 @@
 
 .modal {
   width: 450px;
+  max-height: 600px;
   background: white;
   padding: 20px;
   border-radius: 8px;
   position: relative;
+  overflow-y: auto; 
 }
 .modal h2 {
   text-align: center;

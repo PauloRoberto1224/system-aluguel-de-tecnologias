@@ -37,7 +37,7 @@ export const Home = () => {
             <div className="container">
             <Header />
                 <main>
-                    <div>
+                    <div className="scrollable-content">
                         <div className="tag-clientes">
                             <p>| Clientes</p>
                         </div>
@@ -77,7 +77,7 @@ export const Home = () => {
                         isOpen={openModalEdit}
                         title="Editar cliente"
                         onClose={() => setOpenModalEdit(false)}
-                        children={clienteEdit ? <FormEdit initialData={clienteEdit} /> : null} 
+                        children={clienteEdit ? <FormEdit initialData={clienteEdit} id={clienteEdit.id}/> : null} 
                     />
                 </main>
             </div>

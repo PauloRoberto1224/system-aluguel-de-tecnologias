@@ -87,13 +87,36 @@
 main {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start; 
     width: 60%;
-    height: 70%;
+    height: 80%;
     padding: 50px 40px;
     background-color: #fff;
     border-radius: 4px;
 }
+
+.scrollable-content {
+    flex: 1; /* Expande o espaço da div rolável */
+    overflow-y: auto; /* Habilita o scroll vertical */
+    padding-right: 10px; /* Adiciona espaço interno */
+    margin-bottom: 20px; /* Adiciona um espaço para o botão abaixo */
+  }
+  
+  /* Altera a altura para a div rolável */
+  .scrollable-content .content-primary {
+    background-color: #e9e1e1;
+    padding: 10px;
+    border-radius: 4px;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .scrollable-content .tag-clientes {
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: -10px;
+  }
 button {
     width: 85px;
     display: flex;

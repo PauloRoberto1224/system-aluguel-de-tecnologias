@@ -22,9 +22,10 @@ type FormData = z.infer<typeof schema>;
 
 interface FormEditProps {
   initialData: FormData; 
+  id: number
 }
 
-export const FormEdit: React.FC<FormEditProps> = ({ initialData }) => {
+export const FormEdit: React.FC<FormEditProps> = ({ initialData, id }) => {
   const navigation = useNavigate();
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
@@ -33,9 +34,9 @@ export const FormEdit: React.FC<FormEditProps> = ({ initialData }) => {
   });
 
   const onSubmit = async (data: FormData) => {
-    const response = await api.put('/clientes/', data)
+    const response = await api.put(`/clientes/${id}/`, data)
     if (response.status == 201) {
-      window.alert("Cliente criado com sucesso!")
+      window.alert("Cliente atualizado com sucesso!")
       window.location.reload();
       navigation('/home')
     }

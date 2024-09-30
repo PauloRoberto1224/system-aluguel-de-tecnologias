@@ -40,7 +40,7 @@ export const Aluguel = () => {
             <div className="container">
                <Header />
                 <main>
-                    <div>
+                    <div className="scrollable-content">
                         <div className="tag-clientes">
                             <p>| Alugueis</p>
                         </div>
@@ -84,7 +84,7 @@ export const Aluguel = () => {
                         isOpen={openModalEdit}
                         title="Editar aluguel"
                         onClose={() => setOpenModalEdit(false)}
-                        children={aluguelSelecionado ? <FormAluguelEdit aluguel={aluguelSelecionado} /> : null }
+                        children={aluguelSelecionado ? <FormAluguelEdit aluguel={aluguelSelecionado} id={aluguelSelecionado.id} /> : null }
                     />
                 </main>
             </div>

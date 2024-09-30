@@ -22,9 +22,10 @@ type FormData = z.infer<typeof schema>;
 
 interface FormAluguelEditProps {
   aluguel: FormData;
+  id: number
 }
 
-export const FormAluguelEdit: React.FC<FormAluguelEditProps> = ({ aluguel }) => {
+export const FormAluguelEdit: React.FC<FormAluguelEditProps> = ({ aluguel, id}) => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
@@ -54,9 +55,9 @@ export const FormAluguelEdit: React.FC<FormAluguelEditProps> = ({ aluguel }) => 
   }, [aluguel, reset]);
   
   const onSubmit = async (data: FormData) => {
-    const response = await api.put('/alugueis/', data)
-    if (response.status == 201) {
-      window.alert("Cliente criado com sucesso!")
+    const response = await api.put(`/alugueis/${id}/`, data)
+    if (response.status == 200) {
+      window.alert("Aluguel atualizado com sucesso!")
       window.location.reload();
       navigation('/aluguel')
     }

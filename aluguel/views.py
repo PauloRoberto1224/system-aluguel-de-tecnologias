@@ -1,5 +1,3 @@
-# Aqui você implementou as views usando o Django REST Framework, que expõe os dados da API para as operações de CRUD.
-
 from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.response import Response
@@ -21,7 +19,7 @@ class ClienteViewSet(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_class = ClienteFilter  # Substituído para usar o filtro personalizado busncando nomes parcialmente 
+    filterset_class = ClienteFilter  # Substituído para usar o filtro personalizado buscando nomes parcialmente 
 
 # ViewSet para gerenciar operações de CRUD do modelo Produto
 class ProdutoViewSet(viewsets.ModelViewSet):
@@ -35,14 +33,43 @@ class AluguelViewSet(viewsets.ModelViewSet):
 
     # Verifica se o produto está disponível no período antes de criar o aluguel
     def create(self, request, *args, **kwargs):
-        produto = Produto.objects.get(id=request.data['produto'])
-        data_inicio = request.data['data_inicio']
-        data_fim = request.data['data_fim']
-
-        # Verifica se há aluguéis que se sobrepõem no período solicitado
-        alugueis_existentes = Aluguel.objects.filter(produto=produto, data_fim__gte=data_inicio, data_inicio__lte=data_fim)
+        serializer = AluguelSerializer(data=request.data)
         
-        if alugueis_existentes.exists():
-            return Response({"erro": "Produto já alugado nesse período"}, status=status.HTTP_400_BAD_REQUEST)
+        if serializer.is_valid():
+            produto = Produto.objects.get(id=request.data['produto'])
+            data_inicio = serializer.validated_data['data_inicio']
+            data_fim = serializer.validated_data['data_fim']
 
-        return super().create(request, *args, **kwargs)
+            # Verifica se há aluguéis que se sobrepõem no período solicitado
+            alugueis_existentes = Aluguel.objects.filter(produto=produto, data_fim__gte=data_inicio, data_inicio__lte=data_fim)
+
+            if alugueis_existentes.exists():
+                return Response({"erro": "Produto já alugado nesse período"}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Salva o aluguel com o produto associado
+            serializer.save(produto=produto)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # Método para atualizar o aluguel
+    def update(self, request, *args, **kwargs):
+        aluguel = self.get_object()
+        serializer = AluguelSerializer(aluguel, data=request.data)
+
+        if serializer.is_valid():
+            produto = Produto.objects.get(id=request.data['produto'])
+            data_inicio = serializer.validated_data['data_inicio']
+            data_fim = serializer.validated_data['data_fim']
+
+            # Verifica se o produto está disponível no novo período
+            alugueis_existentes = Aluguel.objects.filter(produto=produto, data_fim__gte=data_inicio, data_inicio__lte=data_fim).exclude(id=aluguel.id)
+
+            if alugueis_existentes.exists():
+                return Response({"erro": "Produto já alugado nesse período"}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Atualiza e salva o objeto
+            serializer.save(produto=produto)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -36,7 +36,8 @@
 }
 
 .content-primary p {
-    font-size: 18px;
+    font-size: .9rem;
+
     font-weight: 400;
     font-family: 'Poppins', sans-serif;
     margin-left: 10px;
@@ -79,11 +80,7 @@
     font-family: 'Poppins', sans-serif;
     margin-bottom: 5px;
 }
-.box-buttons {
-    display: flex;
-    align-content: center;
-    gap: 10px;
-}
+
 main {
     display: flex;
     flex-direction: column;
@@ -96,10 +93,10 @@ main {
 }
 
 .scrollable-content {
-    flex: 1; /* Expande o espaço da div rolável */
-    overflow-y: auto; /* Habilita o scroll vertical */
-    padding-right: 10px; /* Adiciona espaço interno */
-    margin-bottom: 20px; /* Adiciona um espaço para o botão abaixo */
+    flex: 1; 
+    overflow-y: auto;
+    padding-right: 10px; 
+    margin-bottom: 20px; 
   }
   
   /* Altera a altura para a div rolável */
@@ -117,6 +114,7 @@ main {
     margin-bottom: 10px;
     margin-top: -10px;
   }
+
 button {
     width: 85px;
     display: flex;
@@ -125,7 +123,7 @@ button {
     background-color: #505050;
     border: none;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 12px;
     padding: 10px 10px;
     color: #fff;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
@@ -134,7 +132,7 @@ button {
 
 button:hover {
     transform: scale(1.1);
-    transition: all ease-in-out .2s;
+    transition: all ease .2s;
 }
 
 .editar {

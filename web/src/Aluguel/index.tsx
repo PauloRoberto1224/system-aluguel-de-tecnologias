@@ -45,12 +45,12 @@ export const Aluguel = () => {
                             <p>| Alugueis</p>
                         </div>
                         {
-                            aluguel.map((a) => {
+                            aluguel.map((a:Rental) => {
                                 return (
                                     <div className="content-primary" key={a.id}>
                                         <div>
-                                            <p>{a.produto}</p>
-                                            <p>{a.cliente}</p>
+                                            <p>Produto: {a.produto_nome}</p>
+                                            <p>Cliente: {a.cliente_nome}</p>
                                             <div className="info-content">
                                                 <p>Data início: {a.data_inicio}</p>
                                                 <p>Data fim: {a.data_fim}</p>

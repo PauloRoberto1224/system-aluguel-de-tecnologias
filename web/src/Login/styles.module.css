@@ -1,65 +1,309 @@
+/* Container principal da página */
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; 
-    background-color: #f0f8ff; 
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px; 
-  }
-  
-  h2 {
-    text-align: center;
-    color: #444444;
-    font-weight: 300;
-    font-family: 'Poppins', sans-serif;
-    margin-bottom: 20px;
-  }
-  
-  .field {
-    margin-bottom: 16px;
-  }
-  
-  label {
-    margin-bottom: 8px;
-    font-weight: 300;
-    font-size: .85rem;
-    color: #444444;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    font-size: 16px;
-  }
-  
-  button {
-    padding: 10px;
-    background-color: #54b1ee; 
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    background-color: #4ca3de; 
-  }
-  
-  .error {
-    color: red;
-    font-size: 0.875em;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f8ff;
+  position: relative;
+}
+
+/* Container do formulário de login */
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  position: relative;
+  z-index: 2; /* O formulário deve estar acima da marca d'água */
+  margin-bottom: 20px; /* Espaçamento entre o formulário e as logos inferiores */
+  align-items: center; /* Centraliza os itens do formulário */
+/*}
+
+/* Estilo para a marca d'água atrás do formulário */
+/*.logoBackground {
+  position: absolute;
+  top: 50%; /* Centraliza verticalmente no formulário */
+/*  left: 50%; /* Centraliza horizontalmente no formulário */
+ /* transform: translate(-50%, -50%);
+  width: 200px; /* Ajuste o tamanho da marca d'água */
+ /* height: 200px;
+  /*background-image: url('/logos/logo1.jpg'); /* Caminho da logo que será usada como marca d'água */
+ /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.1; /* Controle de opacidade para a marca d'água */
+ /* z-index: 1; /* Fica abaixo do formulário */
+}
+
+/* Container para a logo no topo */
+.topLogoContainer {
+  position: absolute;
+  top: 10px; /* Ajuste conforme necessário para a distância do topo */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Estilo para a logo no topo */
+.logoTop {
+  width: 150px; /* Tamanho da logo superior, ajuste conforme necessário */
+  height: auto; /* Mantém a proporção da imagem */
+}
+
+/* Título do formulário */
+h2 {
+  text-align: center;
+  color: #444444;
+  font-weight: 300;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px;
+}/* Container principal da página */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f8ff;
+  position: relative;
+}
+
+/* Container do formulário de login */
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  position: relative;
+  z-index: 2; /* O formulário deve estar acima de outros elementos */
+  margin-bottom: 20px; /* Espaçamento entre o formulário e as logos inferiores */
+  align-items: center; /* Centraliza os itens do formulário */
+}
+
+/* Container para a logo no topo */
+.topLogoContainer {
+  position: absolute;
+  top: 10px; /* Ajuste conforme necessário para a distância do topo */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Estilo para a logo no topo */
+.logoTop {
+  max-width: 100%; /* Deixa a logo no topo utilizar o tamanho máximo disponível */
+  height: auto; /* Mantém a proporção da imagem */
+}
+
+/* Título do formulário */
+h2 {
+  text-align: center;
+  color: #444444;
+  font-weight: 300;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px;
+}
+
+/* Campos do formulário */
+.field {
+  margin-bottom: 16px;
+}
+
+label {
+  margin-bottom: 8px;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: #444444;
+  font-family: 'Poppins', sans-serif;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 16px;
+}
+
+/* Botão do formulário */
+button {
+  padding: 10px;
+  background-color: #54b1ee;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #4ca3de;
+}
+
+.error {
+  color: red;
+  font-size: 0.875em;
+}
+
+/* Container geral das logos */
+.logoContainerWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center; /* Centraliza o container */
+  z-index: 2; /* Garante que o container de logos fique acima de outros elementos */
+}
+
+/* Ajuste para as logos inferiores */
+.logoContainer {
+  display: flex;
+  justify-content: center; /* Centraliza as logos inferiores */
+  flex-wrap: wrap; /* Permite quebrar linha se necessário */
+  position: relative;
+  z-index: 2; /* Garante que as logos fiquem acima de outros elementos */
+  opacity: 1; /* Garante que as logos estejam 100% visíveis */
+}
+
+.logo {
+  max-width: 100%; /* Permite que a logo use seu tamanho real */
+  height: auto; /* Mantém a proporção original das logos */
+  margin: 20px; /* Espaço entre as logos */
+  z-index: 2; /* Garante que cada logo esteja visível */
+  opacity: 1; /* Garante que as logos estejam 100% visíveis */
+}
+
+
+/* Campos do formulário */
+.field {
+  margin-bottom: 16px;
+}
+
+label {
+  margin-bottom: 8px;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: #444444;
+  font-family: 'Poppins', sans-serif;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 16px;
+}
+
+/* Botão do formulário */
+button {
+  padding: 10px;
+  background-color: #54b1ee;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #4ca3de;
+}
+
+.error {
+  color: red;
+  font-size: 0.875em;
+}
+
+/* Container geral das logos */
+.logoContainerWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center; /* Centraliza o container */
+  z-index: 2; /* Garante que o container de logos fique acima da marca d'água */
+}
+
+/* Ajuste para as logos inferiores */
+.logoContainer {
+  display: flex;
+  justify-content: center; /* Centraliza as logos inferiores */
+  flex-wrap: wrap; /* Permite quebrar linha se necessário */
+  position: relative;
+  z-index: 2; /* Garante que as logos fiquem acima do fundo e da marca d'água */
+  opacity: 1; /* Garante que as logos estejam 100% visíveis */
+}
+
+.logo {
+  width: 150px; /* Ajuste o tamanho das logos */
+  height: auto;
+  margin: 10px; /* Espaço entre as logos */
+  z-index: 2; /* Garante que cada logo esteja acima da marca d'água */
+  opacity: 1; /* Garante que as logos estejam 100% visíveis */
+}
+/* Rodapé */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f8ff;
+  font-size: 0.9em;
+  color: #444444;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+/* Container principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f8ff;
+  position: relative;
+  padding-bottom: 60px; /* Espaço reservado para o rodapé */
+}
+
+/* Logo container */
+.logoContainerWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+}
+
+.logo {
+  width: 150px; /* Ajuste o tamanho das logos conforme necessário */
+  height: auto;
+  margin: 20px;
+  z-index: 2;
+  opacity: 1;
+}

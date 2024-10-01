@@ -43,6 +43,22 @@ export const LoginForm: React.FC = () => {
         </div>
         <button type="submit">Entrar</button>
       </form>
+
+      {/* Adicionando as logos abaixo do formulário */}
+      <div className={styles.logoContainerWrapper}>
+        <div className={styles.logoContainer}>
+          <img src="/logos/logo1.jpg" alt="Logo 01" className={styles.logo} />
+          <img src="/logos/logo2.jpg" alt="Logo 02" className={styles.logo} />
+          <img src="/logos/logo4.jpg" alt="Logo 04" className={styles.logo} />
+          <img src="/logos/logo3.jpeg" alt="Logo 03" className={styles.logo} />
+        </div>
+      </div>
+
+      {/* Rodapé com os direitos autorais */}
+      <footer className={styles.footer}>
+        <p>&copy; 2024 Digital Operações e Soluções em Sistemas.</p>
+        <p>Desenvolvido por Digital_doctorsslz. Contato: (98) 9 8408-7441</p>
+      </footer>
     </div>
   );
 };
